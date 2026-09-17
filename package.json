@@ -1,0 +1,9 @@
+{
+  "name": "capex-trend-tracker",
+  "private": true,
+  "description": "Capital expenditure trend tracker with baked first-paint HTML.",
+  "scripts": {
+    "render": "node scripts/render-static.js",
+    "test": "bash scripts/test.sh"
+  }
+}

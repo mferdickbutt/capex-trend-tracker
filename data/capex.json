@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "title": "CapEx Trend Tracker",
+    "currency": "USD",
+    "updated": "2026-09-17",
+    "coverage": "2025-04/2026-09",
+    "monthCount": 18,
+    "sample": true,
+    "note": "Sample capital expenditure by category with monthly depreciation and comparison targets. Not live finance data."
+  },
+  "targets": {
+    "monthlyCapex": 110000,
+    "capexToDepreciation": 1.5,
+    "categoryMix": {
+      "equipment": 0.48,
+      "facilities": 0.18,
+      "software": 0.22,
+      "vehicles": 0.06,
+      "other": 0.06
+    }
+  },
+  "months": [
+    {
+      "month": "2025-04",
+      "depreciation": 61200,
+      "capex": {
+        "equipment": 38500,
+        "facilities": 14200,
+        "software": 18600,
+        "vehicles": 0,
+        "other": 4800
+      }
+    },
+    {
+      "month": "2025-05",
+      "depreciation": 61800,
+      "capex": {
+        "equipment": 41200,
+        "facilities": 13800,
+        "software": 19200,
+        "vehicles": 0,
+        "other": 5100
+      }
+    },
+    {
+      "month": "2025-06",
+      "depreciation": 62500,
+      "capex": {
+        "equipment": 86400,
+        "facilities": 15100,
+        "software": 19800,
+        "vehicles": 0,
+        "other": 5400
+      }
+    },
+    {
+      "month": "2025-07",
+      "depreciation": 64100,
+      "capex": {
+        "equipment": 39800,
+        "facilities": 14400,
+        "software": 20100,
+        "vehicles": 0,
+        "other": 4700
+      }
+    },
+    {
+      "month": "2025-08",
+      "depreciation": 64600,
+      "capex": {
+        "equipment": 42100,
+        "facilities": 13900,
+        "software": 20800,
+        "vehicles": 0,
+        "other": 5200
+      }
+    },
+    {
+      "month": "2025-09",
+      "depreciation": 65200,
+      "capex": {
+        "equipment": 40500,
+        "facilities": 14700,
+        "software": 21400,
+        "vehicles": 48200,
+        "other": 4900
+      }
+    },
+    {
+      "month": "2025-10",
+      "depreciation": 66800,
+      "capex": {
+        "equipment": 43800,
+        "facilities": 15200,
+        "software": 22100,
+        "vehicles": 0,
+        "other": 5600
+      }
+    },
+    {
+      "month": "2025-11",
+      "depreciation": 67400,
+      "capex": {
+        "equipment": 45200,
+        "facilities": 62800,
+        "software": 21800,
+        "vehicles": 0,
+        "other": 5800
+      }
+    },
+    {
+      "month": "2025-12",
+      "depreciation": 69200,
+      "capex": {
+        "equipment": 47600,
+        "facilities": 16500,
+        "software": 24600,
+        "vehicles": 0,
+        "other": 7200
+      }
+    },
+    {
+      "month": "2026-01",
+      "depreciation": 69800,
+      "capex": {
+        "equipment": 44100,
+        "facilities": 15800,
+        "software": 51200,
+        "vehicles": 0,
+        "other": 5300
+      }
+    },
+    {
+      "month": "2026-02",
+      "depreciation": 71200,
+      "capex": {
+        "equipment": 45800,
+        "facilities": 14900,
+        "software": 23400,
+        "vehicles": 0,
+        "other": 5500
+      }
+    },
+    {
+      "month": "2026-03",
+      "depreciation": 71800,
+      "capex": {
+        "equipment": 47200,
+        "facilities": 15600,
+        "software": 24100,
+        "vehicles": 36500,
+        "other": 5100
+      }
+    },
+    {
+      "month": "2026-04",
+      "depreciation": 73400,
+      "capex": {
+        "equipment": 49500,
+        "facilities": 16200,
+        "software": 24800,
+        "vehicles": 0,
+        "other": 5900
+      }
+    },
+    {
+      "month": "2026-05",
+      "depreciation": 74000,
+      "capex": {
+        "equipment": 50800,
+        "facilities": 15400,
+        "software": 25500,
+        "vehicles": 0,
+        "other": 6100
+      }
+    },
+    {
+      "month": "2026-06",
+      "depreciation": 74700,
+      "capex": {
+        "equipment": 98200,
+        "facilities": 16800,
+        "software": 26200,
+        "vehicles": 0,
+        "other": 6400
+      }
+    },
+    {
+      "month": "2026-07",
+      "depreciation": 76800,
+      "capex": {
+        "equipment": 52100,
+        "facilities": 16100,
+        "software": 26800,
+        "vehicles": 0,
+        "other": 5800
+      }
+    },
+    {
+      "month": "2026-08",
+      "depreciation": 77400,
+      "capex": {
+        "equipment": 53400,
+        "facilities": 15700,
+        "software": 27400,
+        "vehicles": 0,
+        "other": 6200
+      }
+    },
+    {
+      "month": "2026-09",
+      "depreciation": 78600,
+      "capex": {
+        "equipment": 54800,
+        "facilities": 41200,
+        "software": 28100,
+        "vehicles": 0,
+        "other": 6500
+      }
+    }
+  ]
+}
