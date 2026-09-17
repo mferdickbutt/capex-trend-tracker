@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CapEx Trend Tracker</title>
+  <meta name="description" content="Capital expenditure trend tracker with category mix, MoM change, CapEx-to-depreciation, and target comparisons. First paint is fully baked HTML.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="kicker">Capital expenditure ledger</div>
+      <h1>CapEx Trend Tracker</h1>
+      <p>
+        18 months of sample capital expenditure (2025-04/2026-09).
+        Summary metrics and the monthly table below are baked into this HTML so a static
+        <code>curl -sL</code> first paint shows Total CapEx, MoM change, category mix, CapEx-to-depreciation, and every month row with no JavaScript placeholder.
+      </p>
+    </header>
+
+    <section class="metrics" aria-label="Summary metrics">
+      <article class="card" id="metric-total-capex">
+        <h2>Total CapEx</h2>
+        <p class="value">$130,600</p>
+        <p class="hint">September 2026</p>
+      </article>
+      <article class="card" id="metric-mom">
+        <h2>MoM change</h2>
+        <p class="value up">+27.2%</p>
+        <p class="hint">vs August 2026 ($102,700)</p>
+      </article>
+      <article class="card" id="metric-capex-to-depreciation">
+        <h2>CapEx-to-depreciation</h2>
+        <p class="value">1.66×</p>
+        <p class="hint">CapEx as a multiple of monthly depreciation</p>
+      </article>
+      <article class="card" id="metric-targets">
+        <h2>Target comparisons</h2>
+        <p class="sub">CapEx target $110,000: <span class="warn">over target by $20,600 (18.7%)</span></p>
+        <p class="sub">CapEx-to-depreciation target 1.50×: <span class="warn">over target by 0.16× (10.8% relative)</span></p>
+      </article>
+    </section>
+
+    <section class="mix" id="category-mix" aria-label="Category mix">
+      <h2>Category mix</h2>
+      <p class="hint">Percent of total by category for September 2026.</p>
+      <div class="mix-grid">
+        <div class="mix-row"><div>Equipment</div><div class="mix-bar" title="42.0%"><span style="width:42.0%"></span></div><div>42.0%</div><div class="sub">under mix target 6.0% pts</div></div><div class="mix-row"><div>Facilities</div><div class="mix-bar" title="31.5%"><span style="width:31.5%"></span></div><div>31.5%</div><div class="sub">over mix target 13.5% pts</div></div><div class="mix-row"><div>Software / IT</div><div class="mix-bar" title="21.5%"><span style="width:21.5%"></span></div><div>21.5%</div><div class="sub">under mix target 0.5% pts</div></div><div class="mix-row"><div>Vehicles</div><div class="mix-bar" title="0.0%"><span style="width:0.0%"></span></div><div>0.0%</div><div class="sub">under mix target 6.0% pts</div></div><div class="mix-row"><div>Other</div><div class="mix-bar" title="5.0%"><span style="width:5.0%"></span></div><div>5.0%</div><div class="sub">under mix target 1.0% pts</div></div>
+      </div>
+    </section>
+
+    <section class="trend" aria-label="CapEx sparkline">
+      <h2>Monthly CapEx</h2>
+      <div class="spark" style="grid-template-columns: repeat(18, 1fr)"><div class="bar" style="height:51.6%" title="April 2025 $76,100"></div><div class="bar" style="height:53.7%" title="May 2025 $79,300"></div><div class="bar" style="height:85.8%" title="June 2025 $126,700"></div><div class="bar" style="height:53.5%" title="July 2025 $79,000"></div><div class="bar" style="height:55.6%" title="August 2025 $82,000"></div><div class="bar" style="height:87.9%" title="September 2025 $129,700"></div><div class="bar" style="height:58.7%" title="October 2025 $86,700"></div><div class="bar" style="height:91.9%" title="November 2025 $135,600"></div><div class="bar" style="height:65.0%" title="December 2025 $95,900"></div><div class="bar" style="height:78.9%" title="January 2026 $116,400"></div><div class="bar" style="height:60.7%" title="February 2026 $89,600"></div><div class="bar" style="height:87.1%" title="March 2026 $128,500"></div><div class="bar" style="height:65.3%" title="April 2026 $96,400"></div><div class="bar" style="height:66.3%" title="May 2026 $97,800"></div><div class="bar" style="height:100.0%" title="June 2026 $147,600"></div><div class="bar" style="height:68.3%" title="July 2026 $100,800"></div><div class="bar" style="height:69.6%" title="August 2026 $102,700"></div><div class="bar is-latest" style="height:88.5%" title="September 2026 $130,600"></div></div>
+    </section>
+
+    <section aria-label="Monthly table">
+      <h2>Monthly table</h2>
+      <p class="hint">Click a column header to sort after JavaScript loads. Rows and values are already in the markup.</p>
+      <p id="selected-month"></p>
+      <div class="table-wrap">
+        <table id="monthly-table">
+          <thead>
+            <tr>
+              <th data-sort="month" data-type="string">Month</th>
+              <th data-sort="equipment" data-type="number">Equipment</th>
+              <th data-sort="facilities" data-type="number">Facilities</th>
+              <th data-sort="software" data-type="number">Software / IT</th>
+              <th data-sort="vehicles" data-type="number">Vehicles</th>
+              <th data-sort="other" data-type="number">Other</th>
+              <th data-sort="total" data-type="number">Total CapEx</th>
+              <th data-sort="depreciation" data-type="number">Depreciation</th>
+              <th data-sort="ratio" data-type="number">CapEx-to-depreciation</th>
+              <th data-sort="mom" data-type="number">MoM</th>
+              <th>vs CapEx target</th>
+            </tr>
+          </thead>
+          <tbody>
+<tr data-month="2025-04" data-label="April 2025" data-total="$76,100"><td data-key="month" data-value="2025-04">April 2025</td><td data-key="equipment" data-value="38500">$38,500</td><td data-key="facilities" data-value="14200">$14,200</td><td data-key="software" data-value="18600">$18,600</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="4800">$4,800</td><td data-key="total" data-value="76100">$76,100</td><td data-key="depreciation" data-value="61200">$61,200</td><td data-key="ratio" data-value="1.2434640522875817">1.24×</td><td data-key="mom" data-value="">—</td><td data-key="target"><span class="pill under">Under 30.8%</span></td></tr>
+<tr data-month="2025-05" data-label="May 2025" data-total="$79,300"><td data-key="month" data-value="2025-05">May 2025</td><td data-key="equipment" data-value="41200">$41,200</td><td data-key="facilities" data-value="13800">$13,800</td><td data-key="software" data-value="19200">$19,200</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5100">$5,100</td><td data-key="total" data-value="79300">$79,300</td><td data-key="depreciation" data-value="61800">$61,800</td><td data-key="ratio" data-value="1.2831715210355987">1.28×</td><td data-key="mom" data-value="0.04204993429697766">+4.2%</td><td data-key="target"><span class="pill under">Under 27.9%</span></td></tr>
+<tr data-month="2025-06" data-label="June 2025" data-total="$126,700"><td data-key="month" data-value="2025-06">June 2025</td><td data-key="equipment" data-value="86400">$86,400</td><td data-key="facilities" data-value="15100">$15,100</td><td data-key="software" data-value="19800">$19,800</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5400">$5,400</td><td data-key="total" data-value="126700">$126,700</td><td data-key="depreciation" data-value="62500">$62,500</td><td data-key="ratio" data-value="2.0272">2.03×</td><td data-key="mom" data-value="0.5977301387137453">+59.8%</td><td data-key="target"><span class="pill over">Over 15.2%</span></td></tr>
+<tr data-month="2025-07" data-label="July 2025" data-total="$79,000"><td data-key="month" data-value="2025-07">July 2025</td><td data-key="equipment" data-value="39800">$39,800</td><td data-key="facilities" data-value="14400">$14,400</td><td data-key="software" data-value="20100">$20,100</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="4700">$4,700</td><td data-key="total" data-value="79000">$79,000</td><td data-key="depreciation" data-value="64100">$64,100</td><td data-key="ratio" data-value="1.2324492979719188">1.23×</td><td data-key="mom" data-value="-0.3764798737174428">-37.6%</td><td data-key="target"><span class="pill under">Under 28.2%</span></td></tr>
+<tr data-month="2025-08" data-label="August 2025" data-total="$82,000"><td data-key="month" data-value="2025-08">August 2025</td><td data-key="equipment" data-value="42100">$42,100</td><td data-key="facilities" data-value="13900">$13,900</td><td data-key="software" data-value="20800">$20,800</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5200">$5,200</td><td data-key="total" data-value="82000">$82,000</td><td data-key="depreciation" data-value="64600">$64,600</td><td data-key="ratio" data-value="1.2693498452012384">1.27×</td><td data-key="mom" data-value="0.0379746835443038">+3.8%</td><td data-key="target"><span class="pill under">Under 25.5%</span></td></tr>
+<tr data-month="2025-09" data-label="September 2025" data-total="$129,700"><td data-key="month" data-value="2025-09">September 2025</td><td data-key="equipment" data-value="40500">$40,500</td><td data-key="facilities" data-value="14700">$14,700</td><td data-key="software" data-value="21400">$21,400</td><td data-key="vehicles" data-value="48200">$48,200</td><td data-key="other" data-value="4900">$4,900</td><td data-key="total" data-value="129700">$129,700</td><td data-key="depreciation" data-value="65200">$65,200</td><td data-key="ratio" data-value="1.9892638036809815">1.99×</td><td data-key="mom" data-value="0.5817073170731707">+58.2%</td><td data-key="target"><span class="pill over">Over 17.9%</span></td></tr>
+<tr data-month="2025-10" data-label="October 2025" data-total="$86,700"><td data-key="month" data-value="2025-10">October 2025</td><td data-key="equipment" data-value="43800">$43,800</td><td data-key="facilities" data-value="15200">$15,200</td><td data-key="software" data-value="22100">$22,100</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5600">$5,600</td><td data-key="total" data-value="86700">$86,700</td><td data-key="depreciation" data-value="66800">$66,800</td><td data-key="ratio" data-value="1.2979041916167664">1.30×</td><td data-key="mom" data-value="-0.3315343099460293">-33.2%</td><td data-key="target"><span class="pill under">Under 21.2%</span></td></tr>
+<tr data-month="2025-11" data-label="November 2025" data-total="$135,600"><td data-key="month" data-value="2025-11">November 2025</td><td data-key="equipment" data-value="45200">$45,200</td><td data-key="facilities" data-value="62800">$62,800</td><td data-key="software" data-value="21800">$21,800</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5800">$5,800</td><td data-key="total" data-value="135600">$135,600</td><td data-key="depreciation" data-value="67400">$67,400</td><td data-key="ratio" data-value="2.0118694362017804">2.01×</td><td data-key="mom" data-value="0.5640138408304498">+56.4%</td><td data-key="target"><span class="pill over">Over 23.3%</span></td></tr>
+<tr data-month="2025-12" data-label="December 2025" data-total="$95,900"><td data-key="month" data-value="2025-12">December 2025</td><td data-key="equipment" data-value="47600">$47,600</td><td data-key="facilities" data-value="16500">$16,500</td><td data-key="software" data-value="24600">$24,600</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="7200">$7,200</td><td data-key="total" data-value="95900">$95,900</td><td data-key="depreciation" data-value="69200">$69,200</td><td data-key="ratio" data-value="1.3858381502890174">1.39×</td><td data-key="mom" data-value="-0.29277286135693215">-29.3%</td><td data-key="target"><span class="pill under">Under 12.8%</span></td></tr>
+<tr data-month="2026-01" data-label="January 2026" data-total="$116,400"><td data-key="month" data-value="2026-01">January 2026</td><td data-key="equipment" data-value="44100">$44,100</td><td data-key="facilities" data-value="15800">$15,800</td><td data-key="software" data-value="51200">$51,200</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5300">$5,300</td><td data-key="total" data-value="116400">$116,400</td><td data-key="depreciation" data-value="69800">$69,800</td><td data-key="ratio" data-value="1.667621776504298">1.67×</td><td data-key="mom" data-value="0.21376433785192908">+21.4%</td><td data-key="target"><span class="pill over">Over 5.8%</span></td></tr>
+<tr data-month="2026-02" data-label="February 2026" data-total="$89,600"><td data-key="month" data-value="2026-02">February 2026</td><td data-key="equipment" data-value="45800">$45,800</td><td data-key="facilities" data-value="14900">$14,900</td><td data-key="software" data-value="23400">$23,400</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5500">$5,500</td><td data-key="total" data-value="89600">$89,600</td><td data-key="depreciation" data-value="71200">$71,200</td><td data-key="ratio" data-value="1.2584269662921348">1.26×</td><td data-key="mom" data-value="-0.23024054982817868">-23.0%</td><td data-key="target"><span class="pill under">Under 18.5%</span></td></tr>
+<tr data-month="2026-03" data-label="March 2026" data-total="$128,500"><td data-key="month" data-value="2026-03">March 2026</td><td data-key="equipment" data-value="47200">$47,200</td><td data-key="facilities" data-value="15600">$15,600</td><td data-key="software" data-value="24100">$24,100</td><td data-key="vehicles" data-value="36500">$36,500</td><td data-key="other" data-value="5100">$5,100</td><td data-key="total" data-value="128500">$128,500</td><td data-key="depreciation" data-value="71800">$71,800</td><td data-key="ratio" data-value="1.7896935933147633">1.79×</td><td data-key="mom" data-value="0.4341517857142857">+43.4%</td><td data-key="target"><span class="pill over">Over 16.8%</span></td></tr>
+<tr data-month="2026-04" data-label="April 2026" data-total="$96,400"><td data-key="month" data-value="2026-04">April 2026</td><td data-key="equipment" data-value="49500">$49,500</td><td data-key="facilities" data-value="16200">$16,200</td><td data-key="software" data-value="24800">$24,800</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5900">$5,900</td><td data-key="total" data-value="96400">$96,400</td><td data-key="depreciation" data-value="73400">$73,400</td><td data-key="ratio" data-value="1.3133514986376023">1.31×</td><td data-key="mom" data-value="-0.24980544747081712">-25.0%</td><td data-key="target"><span class="pill under">Under 12.4%</span></td></tr>
+<tr data-month="2026-05" data-label="May 2026" data-total="$97,800"><td data-key="month" data-value="2026-05">May 2026</td><td data-key="equipment" data-value="50800">$50,800</td><td data-key="facilities" data-value="15400">$15,400</td><td data-key="software" data-value="25500">$25,500</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="6100">$6,100</td><td data-key="total" data-value="97800">$97,800</td><td data-key="depreciation" data-value="74000">$74,000</td><td data-key="ratio" data-value="1.3216216216216217">1.32×</td><td data-key="mom" data-value="0.014522821576763486">+1.5%</td><td data-key="target"><span class="pill under">Under 11.1%</span></td></tr>
+<tr data-month="2026-06" data-label="June 2026" data-total="$147,600"><td data-key="month" data-value="2026-06">June 2026</td><td data-key="equipment" data-value="98200">$98,200</td><td data-key="facilities" data-value="16800">$16,800</td><td data-key="software" data-value="26200">$26,200</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="6400">$6,400</td><td data-key="total" data-value="147600">$147,600</td><td data-key="depreciation" data-value="74700">$74,700</td><td data-key="ratio" data-value="1.9759036144578312">1.98×</td><td data-key="mom" data-value="0.50920245398773">+50.9%</td><td data-key="target"><span class="pill over">Over 34.2%</span></td></tr>
+<tr data-month="2026-07" data-label="July 2026" data-total="$100,800"><td data-key="month" data-value="2026-07">July 2026</td><td data-key="equipment" data-value="52100">$52,100</td><td data-key="facilities" data-value="16100">$16,100</td><td data-key="software" data-value="26800">$26,800</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="5800">$5,800</td><td data-key="total" data-value="100800">$100,800</td><td data-key="depreciation" data-value="76800">$76,800</td><td data-key="ratio" data-value="1.3125">1.31×</td><td data-key="mom" data-value="-0.3170731707317073">-31.7%</td><td data-key="target"><span class="pill under">Under 8.4%</span></td></tr>
+<tr data-month="2026-08" data-label="August 2026" data-total="$102,700"><td data-key="month" data-value="2026-08">August 2026</td><td data-key="equipment" data-value="53400">$53,400</td><td data-key="facilities" data-value="15700">$15,700</td><td data-key="software" data-value="27400">$27,400</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="6200">$6,200</td><td data-key="total" data-value="102700">$102,700</td><td data-key="depreciation" data-value="77400">$77,400</td><td data-key="ratio" data-value="1.32687338501292">1.33×</td><td data-key="mom" data-value="0.018849206349206348">+1.9%</td><td data-key="target"><span class="pill under">Under 6.6%</span></td></tr>
+<tr data-month="2026-09" data-label="September 2026" data-total="$130,600"><td data-key="month" data-value="2026-09">September 2026</td><td data-key="equipment" data-value="54800">$54,800</td><td data-key="facilities" data-value="41200">$41,200</td><td data-key="software" data-value="28100">$28,100</td><td data-key="vehicles" data-value="0">$0</td><td data-key="other" data-value="6500">$6,500</td><td data-key="total" data-value="130600">$130,600</td><td data-key="depreciation" data-value="78600">$78,600</td><td data-key="ratio" data-value="1.6615776081424936">1.66×</td><td data-key="mom" data-value="0.27166504381694256">+27.2%</td><td data-key="target"><span class="pill over">Over 18.7%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>Sample source data: <a href="data/capex.json"><code>data/capex.json</code></a>. Re-render with <code>node scripts/render-static.js</code>.</p>
+    </footer>
+  </div>
+  <script src="js/capex.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
